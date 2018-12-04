@@ -1,0 +1,35 @@
+.puzzle-card {
+  // max-width: 400px;
+  margin: 24px;
+  background-color: lightblue;
+  // color: maroon;
+  color: orangered;
+  font-weight: bold;
+
+  .mat-card-header .mat-card-title {
+    color: darkblue;
+  }
+
+  mat-select {
+    padding: 4px;
+  }
+
+  .puzzle {
+    border: 1px;
+    margin: 8px;
+
+    td {
+      background-color: whitesmoke;
+      min-width: 30px;
+      height: 30px;
+      text-align: center;
+    }
+    td.given {
+      color: black;
+    }
+  }
+
+  .mat-card-actions .mat-raised-button {
+    margin: 12px 16px;
+  }
+}

@@ -1,0 +1,48 @@
+export class CheckRowKnownUnknown {
+
+  static check(gridSize: number, tableData: any, showLog: boolean = false): boolean {
+    if (showLog) { console.log('[CheckRowKnownUnknown] Start'); }
+    let moveMade = false;
+    for (let row = 0; row < gridSize; row++) {
+      let zeroCount = 0;
+      let oneCount = 0;
+      let rowString = '';
+      for (let col = 0; col < gridSize; col++) {
+        if (tableData[row][col].value === 0) {
+          zeroCount++;
+        }
+        if (tableData[row][col].value === 1) {
+          oneCount++;
+        }
+        const currVal = tableData[row][col].value;
+        rowString += '' + (currVal === null ? 'n' : currVal);
+      }
+      const foundPos = rowString.indexOf('1nn0') > -1 ? rowString.indexOf('1nn0') : rowString.indexOf('0nn1');
+      if (foundPos > -1) {
+        if (showLog) { console.log('[CheckRowKnownUnknown] rowString: ' + rowString); }
+        if (showLog) { console.log('[CheckRowKnownUnknown] Found 1nn0/0nn1 in row ' + row + ' at: ' + foundPos); }
+        const foundCols = [ foundPos, foundPos + 1, foundPos + 2, foundPos + 3 ];
+        if (showLog) { console.log('[CheckRowKnownUnknown] Cols: ' + foundCols); }
+        if ((zeroCount + 1) === gridSize / 2) {
+          for (let col = 0; col < gridSize; col++) {
+            if (tableData[row][col].value === null && !(foundCols.indexOf(col) > -1)) {
+              if (showLog) { console.log('[CheckRowKnownUnknown] Setting cell[' + row + '][' + col + '] to 1'); }
+              tableData[row][col].value = 1;
+              moveMade = true;
+            }
+          }
+        }
+        if ((oneCount + 1) === gridSize / 2) {
+          for (let col = 0; col < gridSize; col++) {
+            if (tableData[row][col].value === null && !(foundCols.indexOf(col) > -1)) {
+              if (showLog) { console.log('[CheckRowKnownUnknown] Setting cell[' + row + '][' + col + '] to 0'); }
+              tableData[row][col].value = 0;
+              moveMade = true;
+            }
+          }
+        }
+      }
+    }
+    return moveMade;
+  }
+}

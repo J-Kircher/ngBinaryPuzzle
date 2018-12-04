@@ -1,0 +1,46 @@
+export class CheckColKnownUnknown {
+
+  static check(gridSize: number, tableData: any, showLog: boolean = false): boolean {
+    if (showLog) { console.log('[CheckColKnownUnknown] Start'); }
+    let moveMade = false;
+    for (let col = 0; col < gridSize; col++) {
+      let zeroCount = 0;
+      let oneCount = 0;
+      let colString = '';
+      for (let row = 0; row < gridSize; row++) {
+        if (tableData[row][col].value === 0) {
+          zeroCount++;
+        }
+        if (tableData[row][col].value === 1) {
+          oneCount++;
+        }
+        const currVal = tableData[row][col].value;
+        colString += '' + (currVal === null ? 'n' : currVal);
+      }
+      const foundPos = colString.indexOf('1nn0') > -1 ? colString.indexOf('1nn0') : colString.indexOf('0nn1');
+      if (foundPos > -1) {
+        const foundRows = [ foundPos, foundPos + 1, foundPos + 2, foundPos + 3 ];
+        if (showLog) { console.log('[CheckColKnownUnknown] Rows: ' + foundRows); }
+        if ((zeroCount + 1) === gridSize / 2) {
+          for (let row = 0; row < gridSize; row++) {
+            if (tableData[row][col].value === null && !(foundRows.indexOf(row) > -1)) {
+              if (showLog) { console.log('[CheckColKnownUnknown] Setting cell[' + row + '][' + col + '] to 1'); }
+              tableData[row][col].value = 1;
+              moveMade = true;
+            }
+          }
+        }
+        if ((oneCount + 1) === gridSize / 2) {
+          for (let row = 0; row < gridSize; row++) {
+            if (tableData[row][col].value === null && !(foundRows.indexOf(row) > -1)) {
+              if (showLog) { console.log('[CheckColKnownUnknown] Setting cell[' + row + '][' + col + '] to 0'); }
+              tableData[row][col].value = 0;
+              moveMade = true;
+            }
+          }
+        }
+      }
+    }
+    return moveMade;
+  }
+}
