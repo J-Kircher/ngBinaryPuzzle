@@ -48,16 +48,16 @@ export class CheckRowsThreeNulls {
               tableData[row][col].value = allButOneZero ? 1 : 0;
               moveMade = true;
             }
-            // if (nullCount === 3 // There's only 3 nulls
-            //     && (col === 0 || col === (gridSize - 1)) // This col is at an edge
-            //     && tableData[row][col].value === null // this value is null
-            //     ) {
-            //   // Fill in null cells at borders with the opposite of the allButOne
-            //   Logger.log(showLog(LogLevels.INFO),
-            //     '[CheckRowsThreeNulls.2] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
-            //   tableData[row][col].value = allButOneZero ? 1 : 0;
-            //   moveMade = true;
-            // }
+            if (nullCount === 3 // There's only 3 nulls
+                && (col === 0 || col === (gridSize - 1)) // This col is at an edge
+                && tableData[row][col].value === null // this value is null
+                ) {
+              // Fill in null cells at borders with the opposite of the allButOne
+              Logger.log(showLog(LogLevels.INFO),
+                '[CheckRowsThreeNulls.2] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
+              tableData[row][col].value = allButOneZero ? 1 : 0;
+              moveMade = true;
+            }
             const leftBorder = foundNulls[0] - 1;
             const rightBorder = foundNulls[2] + 1;
             if (nullCount === 3 // There's only 3 nulls

@@ -39,11 +39,6 @@ export class PuzzleComponent implements OnInit {
   //      example: 12VH 2018-11-29 (row 11)
   //      1 0 0 1 0 0 1 0 _ 1 _ _
   //      first blank should not be a zero, would leave 3 1's in a row
-  //    CheckRowsThreeNulls/CheckColsThreeNulls,
-  //      When at edge and three nulls in a row (2 - Hard)
-  //      example: 8H 2018-11-17 (col)
-  //      0 1 0 0 1 _ _ _
-  //      end blank should not be a zero, would leave 3 1's in a row
   //    Row compare (3 - Challenging)
   //      If all but one in one row, and matches a row with all,
   //        then the missing one is opposite
@@ -56,6 +51,16 @@ export class PuzzleComponent implements OnInit {
   //        0 1 1 0 1 _ _ 0
   //        0 1 1 0 1 0 1 0
   //        blanks should be 1 0
+
+  // ISSUES?
+  //    CheckRowsThreeNulls/CheckColsThreeNulls,
+  //      When at edge and three nulls in a row (2 - Hard)
+  //      example: 8H 2018-11-17 (col)
+  //      0 1 0 0 1 _ _ _
+  //      end blank should not be a zero, would leave 3 1's in a row
+  //      Should be fixed by [CheckRowsThreeNulls.2]
+  //      but had potential issues with this solve section
+  //      CANT SOLVE: 12VH 2018-11-26 (3rd row 7 0's, 4th row 7 1's)
 
   tableData = [];
   gridSize = 8;
@@ -229,7 +234,7 @@ export class PuzzleComponent implements OnInit {
         Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for row three nulls');
         let rowsThreeNullMade = true;
         while (rowsThreeNullMade) {
-          rowsThreeNullMade = CheckRowsThreeNulls.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          rowsThreeNullMade = CheckRowsThreeNulls.check(this.gridSize, this.tableData, LogLevels.TRACE);
           if (rowsThreeNullMade) {
             Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Row three nulls: MOVEMADE');
             moveMade = true;
@@ -241,7 +246,7 @@ export class PuzzleComponent implements OnInit {
         Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for col three nulls');
         let colsThreeNullMade = true;
         while (colsThreeNullMade) {
-          colsThreeNullMade = CheckColsThreeNulls.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          colsThreeNullMade = CheckColsThreeNulls.check(this.gridSize, this.tableData, LogLevels.TRACE);
           if (colsThreeNullMade) {
             Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Col three nulls: MOVEMADE');
             moveMade = true;
