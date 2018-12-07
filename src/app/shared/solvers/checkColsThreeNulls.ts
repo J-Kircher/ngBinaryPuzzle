@@ -49,14 +49,27 @@ export class CheckColsThreeNulls {
               moveMade = true;
             }
             if (nullCount === 3 // There's only 3 nulls
-                && (row === 0 || row === (gridSize - 1)) // This row is at an edge
-                && tableData[row][col].value === null // this value is null
-                ) {
-              // Fill in null cells at borders with the opposite of the allButOne
-              Logger.log(showLog(LogLevels.INFO),
-                '[CheckColsThreeNulls.2] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
-              tableData[row][col].value = allButOneZero ? 1 : 0;
-              moveMade = true;
+              && tableData[row][col].value === null // this value is null
+              ) {
+              const val = allButOneZero ? 1 : 0;
+              if (row === 0) { // This row is top edge
+                // Fill in null cell at border with the opposite of the allButOne
+                if (val === (tableData[row + 3][col].value)) {
+                  // If opposite cell is not the allButOne
+                  Logger.log(showLog(LogLevels.INFO), '[CheckColsThreeNulls.2a] Setting cell[' + row + '][' + col + '] to ' + val);
+                  tableData[row][col].value = allButOneZero ? 1 : 0;
+                  moveMade = true;
+                }
+              }
+              if (row === (gridSize - 1)) { // This row is bottom edge
+                // Fill in null cell at border with the opposite of the allButOne
+                if (val === (tableData[row - 3][col].value)) {
+                  // If opposite cell is not the allButOne
+                  Logger.log(showLog(LogLevels.INFO), '[CheckColsThreeNulls.2b] Setting cell[' + row + '][' + col + '] to ' + val);
+                  tableData[row][col].value = allButOneZero ? 1 : 0;
+                  moveMade = true;
+                }
+              }
             }
             const topBorder = foundNulls[0] - 1;
             const bottomBorder = foundNulls[2] + 1;
