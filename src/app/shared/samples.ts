@@ -151,5 +151,19 @@ export const Samples: GridPuzzles[] = [
     [ null, null, null, null, 0, null, null, null, 0, null, null, 1 ],
     [ null, 0, null, null, null, null, null, 0, null, 1, null, null ],
     [ null, 0, null, null, 1, 1, null, null, null, null, null, null ]
+  ] },
+  { id: 14, value: 12, label: '12?? DUMMY', grid: [
+    [ 1, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, null, null, null, null, null, null, null, null, null, null, null ]
   ] }
 ];
