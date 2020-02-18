@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
 
-[Try it!](index.html)
+[Try it!](https://J-Kircher.github.io/ngBinaryPuzzle/index.html)
 
 ## Development server
 
