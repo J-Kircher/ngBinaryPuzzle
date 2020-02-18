@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-gh": "ng build --baseHref=./J-Kircher.github.io/ngBinaryPuzzle --outputPath=../J-Kircher.github.io/ngBinaryPuzzle",
+    "build-gh": "ng build --baseHref=/tryit/ngBinaryPuzzle/ --outputPath=../J-Kircher.github.io/tryit/ngBinaryPuzzle",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
