@@ -3,6 +3,20 @@ import { LogLevels } from '../../shared/models/log.model';
 
 export class CheckColsThreeNulls {
 
+  // This solver will look for cols that have three consecutive null spaces
+  // If the col has all but one of its zeros or ones, then
+  //   1. fill the remaining cells not part of the three nulls with the opposite of the allButOne
+  //   2. If there are only three nulls and
+  //      a. the row is at the top edge, then set the cell to the opposite of the allButOne
+  //      b. the row is at the bottom edge, then set the cell to the opposite of the allButOne
+  //   3. If there are only three nulls and the row is not at an edge
+  //      and the borders of the nulls are equal, then fill the middle cell with the opposite of the borders
+  //   4. If there are only three nulls and the row is not at an edge
+  //      a. and there is all but one zero, and the borders are zero and one, then set cell next to the zero to a one
+  //      b. and there is all but one zero, and the borders are one and zero, then set cell next to the zero to a one
+  //      c. and there is all but one one, and the borders are one and zero, then set cell next to the one to a zero
+  //      d. and there is all but one one, and the borders are zero and one, then set cell next to the one to a zero
+
   static check(gridSize: number, tableData: any, logLevel: number = 0): boolean {
     const showLog = (myLevel) => (logLevel >= myLevel);
     Logger.log(showLog(LogLevels.TRACE), '[CheckColsThreeNulls] Start');

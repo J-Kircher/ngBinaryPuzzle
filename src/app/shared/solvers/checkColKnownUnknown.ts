@@ -3,6 +3,10 @@ import { LogLevels } from '../../shared/models/log.model';
 
 export class CheckColKnownUnknown {
 
+  // This solver will look for cols that match 1nn0 or 0nn1 and have one other null space
+  // If the col has all but one of its zeros, then the remaining cell should be a one
+  // If the col has all but one of its ones, then the remaining cell should be a zero
+
   static check(gridSize: number, tableData: any, logLevel: number = 0): boolean {
     const showLog = (myLevel) => (logLevel >= myLevel);
     Logger.log(showLog(LogLevels.TRACE), '[CheckColKnownUnknown] Start');
@@ -27,19 +31,19 @@ export class CheckColKnownUnknown {
         // Can put one more zero/one in col
         const ma: RegExpMatchArray = colString.match('1nn+0|0nn+1');
         if (ma != null) {
-          console.log('ma: ' + ma);
-          console.table(ma);
+          // console.log('ma: ' + ma);
+          // console.table(ma);
           const startPos = ma.index;
           const endPos = ma.index + ma[0].length - 1;
           for (let row = 0; row < gridSize; row++) {
-            console.log('checking row ' + row);
-            console.log('first exp part: ' + (tableData[row][col].value === null));
-            console.log('second exp part: ' + !(row >= startPos && row <= endPos));
-            console.log('full exp: ' + (tableData[row][col].value === null && !(row >= startPos && row <= endPos)));
+            // console.log('checking row ' + row);
+            // console.log('first exp part: ' + (tableData[row][col].value === null));
+            // console.log('second exp part: ' + !(row >= startPos && row <= endPos));
+            // console.log('full exp: ' + (tableData[row][col].value === null && !(row >= startPos && row <= endPos)));
             if (tableData[row][col].value === null && !(row >= startPos && row <= endPos)) {
               Logger.log(showLog(LogLevels.INFO),
                 '[CheckColKnownUnknown] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
-              console.log('[CheckColKnownUnknown] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
+              // console.log('[CheckColKnownUnknown] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
               tableData[row][col].value = allButOneZero ? 1 : 0;
               moveMade = true;
             }

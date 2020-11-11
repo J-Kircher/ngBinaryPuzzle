@@ -3,6 +3,10 @@ import { LogLevels } from '../../shared/models/log.model';
 
 export class CheckTwins {
 
+  // This solver will look for cells that are before or after two consecutive zeros or two consecutive ones
+  // If adjacent to two zeros, then the cell should be a one
+  // If adjacent to two ones, then the cell should be a zero
+
   static check(gridSize: number, tableData: any, logLevel: number = 0): boolean {
     const showLog = (myLevel) => (logLevel >= myLevel);
     Logger.log(showLog(LogLevels.TRACE), '[CheckTwins] Start');

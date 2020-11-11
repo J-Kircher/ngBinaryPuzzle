@@ -3,6 +3,11 @@ import { LogLevels } from '../../shared/models/log.model';
 
 export class CheckRowTotals {
 
+  // This solver will look for cells in rows that are in null and
+  //   the row has a full amount of zeros or ones
+  // If the row has all its zeros, then the rest of the cells should be a one
+  // If the row has all its ones, then the rest of the cells should be a zero
+
   static check(gridSize: number, tableData: any, logLevel: number = 0): boolean {
     const showLog = (myLevel) => (logLevel >= myLevel);
     Logger.log(showLog(LogLevels.TRACE), '[CheckRowTotals] Start');

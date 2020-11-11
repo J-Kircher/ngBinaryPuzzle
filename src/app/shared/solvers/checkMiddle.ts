@@ -3,6 +3,10 @@ import { LogLevels } from '../../shared/models/log.model';
 
 export class CheckMiddle {
 
+  // This solver will look for cells that are in between two zeros or two ones
+  // If in between two zeros, then the cell should be a one
+  // If in between two ones, then the cell should be a zero
+
   static check(gridSize: number, tableData: any, logLevel: number = 0): boolean {
     const showLog = (myLevel) => (logLevel >= myLevel);
     Logger.log(showLog(LogLevels.TRACE), '[CheckMiddle] Start');
