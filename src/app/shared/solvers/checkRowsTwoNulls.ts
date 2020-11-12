@@ -3,6 +3,10 @@ import { LogLevels } from '../../shared/models/log.model';
 
 export class CheckRowsTwoNulls {
 
+  // This solver will look for rows that have two consecutive null spaces that are bordered by like values
+  // If the row has all but one of its zeros and two nulls are surrounded by ones, then set all other nulls to one
+  // If the row has all but one of its ones and two nulls are surrounded by zeros, then set all other nulls to zero
+
   static check(gridSize: number, tableData: any, logLevel: number = 0): boolean {
     const showLog = (myLevel) => (logLevel >= myLevel);
     Logger.log(showLog(LogLevels.TRACE), '[CheckRowsTwoNulls] Start');
