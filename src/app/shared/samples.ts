@@ -108,7 +108,19 @@ export const Samples: GridPuzzles[] = [
     [ null, 1, null, 1, 1, null, 1, null, null, null ],
     [ null, null, 1, null, null, null, null, null, null, null ]
   ] },
-  { id: 11, value: 12, label: '12H 2018-11-14', grid: [
+  { id: 11, value: 10, label: '10VH 2019-08-26', grid: [
+    [ 0, null, null, null, 1, 1, null, 0, null, 0 ],
+    [ null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null ],
+    [ 1, null, null, null, 1, null, null, 1, 1, null ],
+    [ null, null, null, 0, null, null, null, 1, null, 1 ],
+    [ null, 1, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, 1, null, 0, null ],
+    [ null, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, 0, null, 1, null, null, 0, null ],
+    [ null, null, 1, null, null, null, null, 1, 1, null ]
+  ] },
+  { id: 12, value: 12, label: '12H 2018-11-14', grid: [
     [ null, null, null, 0, null, null, null, null, null, null, 0, null ],
     [ null, null, 1, null, null, 1, 0, null, null, null, null, null ],
     [ null, 0, 1, null, null, null, null, null, 0, null, 0, null ],
@@ -122,7 +134,7 @@ export const Samples: GridPuzzles[] = [
     [ null, 0, null, null, 0, 0, null, null, 0, null, null, null ],
     [ null, null, 1, null, null, null, null, null, 1, 1, null, null ]
   ] },
-  { id: 12, value: 12, label: '12VH 2018-11-19', grid: [
+  { id: 13, value: 12, label: '12VH 2018-11-19', grid: [
     [ 0, null, null, null, null, null, null, null, null, 1, null, 0 ],
     [ null, null, 0, null, null, 1, 1, null, null, null, null, null ],
     [ null, null, null, 1, null, null, null, null, 0, null, null, 0 ],
@@ -136,7 +148,7 @@ export const Samples: GridPuzzles[] = [
     [ 0, null, null, 1, null, null, 1, null, null, 0, null, 1 ],
     [ null, null, 1, null, null, 0, null, null, null, null, null, null ]
   ] },
-  { id: 13, value: 12, label: '12VH 2018-11-26', grid: [
+  { id: 14, value: 12, label: '12VH 2018-11-26', grid: [
     [ 0, null, null, null, null, 0, 1, null, null, null, null, 0 ],
     [ null, 0, null, 1, null, null, null, 0, 0, null, null, null ],
     [ null, 0, null, null, 1, null, null, null, 0, null, null, null ],
@@ -150,7 +162,7 @@ export const Samples: GridPuzzles[] = [
     [ null, null, null, null, null, null, 1, 0, null, 0, null, null ],
     [ null, null, 0, null, null, null, null, null, null, 0, null, null ]
   ] },
-  { id: 14, value: 12, label: '12VH 2018-11-29', grid: [
+  { id: 15, value: 12, label: '12VH 2018-11-29', grid: [
     [ null, null, null, 1, null, 1, 1, null, null, 0, null, 1 ],
     [ null, null, 0, 0, null, null, null, null, null, null, null, null ],
     [ 1, null, null, null, null, null, null, null, null, null, 0, null ],
@@ -164,7 +176,49 @@ export const Samples: GridPuzzles[] = [
     [ null, 0, null, null, null, null, null, 0, null, 1, null, null ],
     [ null, 0, null, null, 1, 1, null, null, null, null, null, null ]
   ] },
-  { id: 15, value: 12, label: '12?? DUMMY', grid: [
+  { id: 16, value: 12, label: '12H 2019-10-08', grid: [
+    [ null, 1, null, null, 1, 1, null, null, null, 0, null, null ],
+    [ 1, null, 1, null, null, null, 1, null, null, null, 1, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, null, null, null, null, 0, null, 0, null, 0 ],
+    [ null, null, null, 1, null, null, 1, null, 1, null, 1, null ],
+    [ null, null, null, 1, 0, null, null, null, null, null, null, null ],
+    [ null, 1, 1, null, null, 1, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, 0, null, null, 0, null ],
+    [ null, null, 0, null, null, null, null, null, null, 1, null, null ],
+    [ null, null, null, null, null, null, null, 0, null, null, 0, null ],
+    [ null, null, 0, null, 0, null, null, null, null, 0, null, null ],
+    [ null, null, null, null, null, null, null, null, 1, null, 1, 1 ]
+  ] },
+  { id: 17, value: 12, label: '12VH 2019-10-09', grid: [
+    [ null, null, null, 0, null, null, 0, null, null, 1, null, null ],
+    [ null, 0, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, 0, null, null, null, null, 1 ],
+    [ null, null, null, null, 1, 1, null, null, null, 1, null, null ],
+    [ 1, null, null, null, null, 1, null, null, null, null, 1, null ],
+    [ null, null, 1, null, null, null, null, null, 1, null, 1, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, 1, null, 0, null, null, null, 0, null, null, null, null ],
+    [ null, 1, null, null, 1, 1, null, null, null, null, null, null ],
+    [ null, null, 1, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, null, 1, null, null, null, null, null, null, null, null, 1 ]
+  ] },
+  { id: 18, value: 12, label: '12H 2020-09-18', grid: [
+    [ null, 0, null, null, null, null, null, null, null, 1, 1, null ],
+    [ null, null, null, 1, null, null, 0, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 0, null, null, 1, null, 0, null, null, null, null, 1, null ],
+    [ null, null, null, 1, 1, null, 0, null, null, null, null, null ],
+    [ null, 0, null, null, null, null, null, 1, null, null, null, 1 ],
+    [ null, 0, null, null, null, 1, null, null, 0, null, null, null ],
+    [ null, null, null, 1, null, null, null, 1, null, 1, 1, null ],
+    [ null, 1, null, null, null, null, null, null, null, null, 1, null ],
+    [ null, null, 0, null, null, null, null, 1, null, 0, null, null ], // Remove this 1 to test CheckRowsNoThrees/CheckColsNoThrees
+    [ null, null, null, null, 0, null, null, null, null, null, 1, null ],
+    [ null, 0, null, 1, null, 1, null, 1, null, 1, null, null ]
+  ] },
+  { id: 19, value: 12, label: '12?? DUMMY 1', grid: [
     [ 1, null, null, null, null, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null, null, null ],
@@ -177,5 +231,19 @@ export const Samples: GridPuzzles[] = [
     [ 0, null, null, null, null, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null, null, null ],
     [ 1, null, null, null, null, null, null, null, null, null, null, null ]
+  ] },
+  { id: 20, value: 12, label: '12?? DUMMY 2', grid: [
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ 1, 0, 0, 1, 0, 0, 1, 0, null, 1, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, 1, null, 0, 1, 0, 0, 1, 0, 0, 1 ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ],
+    [ null, null, null, null, null, null, null, null, null, null, null, null ]
   ] }
 ];
