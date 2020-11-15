@@ -20,6 +20,8 @@ import { CheckRowsThreeNulls } from '../shared/solvers/checkRowsThreeNulls';
 import { CheckColsThreeNulls } from '../shared/solvers/checkColsThreeNulls';
 import { CheckRowsTwoNulls } from '../shared/solvers/checkRowsTwoNulls';
 import { CheckColsTwoNulls } from '../shared/solvers/checkColsTwoNulls';
+import { CheckRowsNoThrees } from '../shared/solvers/checkRowsNoThrees';
+import { CheckColsNoThrees } from '../shared/solvers/checkColsNoThrees';
 
 @Component({
   selector: 'app-puzzle',
@@ -34,23 +36,19 @@ export class PuzzleComponent implements OnInit {
   // Change bg color of recent click/focus
   // Add all the "solvers" into their own module (or class?)
   // Additional solvers:
-  //    All but one, allow no three in a row of other (2 - Hard)
-  //      CheckRowsNoThrees/CheckColsNoThrees?
-  //      example: 12VH 2018-11-29 (row 11)
-  //      1 0 0 1 0 0 1 0 _ 1 _ _
-  //      first blank should not be a zero, would leave 3 1's in a row
   //    Row compare (3 - Challenging)
   //      If all but one in one row, and matches a row with all,
   //        then the missing one is opposite
   //        example: 8H 2018-11-17 (row 2)
-  //        0 _ 1 0 _ 1 _ 0
   //        0 1 1 0 0 1 1 0
+  //        0 _ 1 0 _ 1 _ 0
   //        second blank must be a 1
   //      When 2 left, make them opposite
   //        example:
-  //        0 1 1 0 1 _ _ 0
   //        0 1 1 0 1 0 1 0
+  //        0 1 1 0 1 _ _ 0
   //        blanks should be 1 0
+  //        probably solved with above row compare
 
   tableData = [];
   gridSize = 8;
@@ -265,6 +263,32 @@ export class PuzzleComponent implements OnInit {
           colsTwoNullMade = CheckColsTwoNulls.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
           if (colsTwoNullMade) {
             Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Col two nulls: MOVEMADE');
+            moveMade = true;
+            this.puzzleLevel = PuzzleLevels.Hard;
+          }
+        }
+      }
+
+      if (!moveMade) {
+        // Check for ROWS NO THREES
+        Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for row no threes');
+        let rowsTwoNullMade = true;
+        while (rowsTwoNullMade) {
+          rowsTwoNullMade = CheckRowsNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (rowsTwoNullMade) {
+            Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Row no threes: MOVEMADE');
+            moveMade = true;
+            this.puzzleLevel = PuzzleLevels.Hard;
+          }
+        }
+
+        // Check for COLS NO THREES
+        Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for col no threes');
+        let colsTwoNullMade = true;
+        while (colsTwoNullMade) {
+          colsTwoNullMade = CheckColsNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (colsTwoNullMade) {
+            Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Col no threes: MOVEMADE');
             moveMade = true;
             this.puzzleLevel = PuzzleLevels.Hard;
           }
