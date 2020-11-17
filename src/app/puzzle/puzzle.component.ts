@@ -22,6 +22,8 @@ import { CheckRowsTwoNulls } from '../shared/solvers/checkRowsTwoNulls';
 import { CheckColsTwoNulls } from '../shared/solvers/checkColsTwoNulls';
 import { CheckRowsNoThrees } from '../shared/solvers/checkRowsNoThrees';
 import { CheckColsNoThrees } from '../shared/solvers/checkColsNoThrees';
+import { CheckRowKnownUnknownNoThrees } from '../shared/solvers/checkRowKnownUnknownNoThrees';
+import { CheckColKnownUnknownNoThrees } from '../shared/solvers/checkColKnownUnknownNoThrees';
 
 @Component({
   selector: 'app-puzzle',
@@ -43,12 +45,17 @@ export class PuzzleComponent implements OnInit {
   //        0 1 1 0 0 1 1 0
   //        0 _ 1 0 _ 1 _ 0
   //        second blank must be a 1
+  //        also: 12VH 2019-10-09 (cols 1 and 4)
   //      When 2 left, make them opposite
   //        example:
   //        0 1 1 0 1 0 1 0
   //        0 1 1 0 1 _ _ 0
   //        blanks should be 1 0
   //        probably solved with above row compare
+  //    Need to solve 10H 2018-11-12
+  //    Need to solve 10VH 2019-08-26
+  //    Need to solve 12H 2019-10-08
+  //    Need to solve 12VH 2019-10-09
 
   tableData = [];
   gridSize = 8;
@@ -272,10 +279,10 @@ export class PuzzleComponent implements OnInit {
       if (!moveMade) {
         // Check for ROWS NO THREES
         Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for row no threes');
-        let rowsTwoNullMade = true;
-        while (rowsTwoNullMade) {
-          rowsTwoNullMade = CheckRowsNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
-          if (rowsTwoNullMade) {
+        let rowsNoThreesMade = true;
+        while (rowsNoThreesMade) {
+          rowsNoThreesMade = CheckRowsNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (rowsNoThreesMade) {
             Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Row no threes: MOVEMADE');
             moveMade = true;
             this.puzzleLevel = PuzzleLevels.Hard;
@@ -284,16 +291,43 @@ export class PuzzleComponent implements OnInit {
 
         // Check for COLS NO THREES
         Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for col no threes');
-        let colsTwoNullMade = true;
-        while (colsTwoNullMade) {
-          colsTwoNullMade = CheckColsNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
-          if (colsTwoNullMade) {
+        let colsNoThreesMade = true;
+        while (colsNoThreesMade) {
+          colsNoThreesMade = CheckColsNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (colsNoThreesMade) {
             Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Col no threes: MOVEMADE');
             moveMade = true;
             this.puzzleLevel = PuzzleLevels.Hard;
           }
         }
       }
+
+      if (!moveMade) {
+        // Check for ROWS KNOWN UNKNOWN NO THREES
+        Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for row no threes');
+        let rowsKnoUnkNo3sMade = true;
+        while (rowsKnoUnkNo3sMade) {
+          rowsKnoUnkNo3sMade = CheckRowKnownUnknownNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (rowsKnoUnkNo3sMade) {
+            Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Row no threes: MOVEMADE');
+            moveMade = true;
+            this.puzzleLevel = PuzzleLevels.Hard;
+          }
+        }
+
+        // Check for COLS KNOWN UNKNOWN NO THREES
+        Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for col no threes');
+        let colsKnoUnkNo3sMade = true;
+        while (colsKnoUnkNo3sMade) {
+          colsKnoUnkNo3sMade = CheckColKnownUnknownNoThrees.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (colsKnoUnkNo3sMade) {
+            Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Col no threes: MOVEMADE');
+            moveMade = true;
+            this.puzzleLevel = PuzzleLevels.Hard;
+          }
+        }
+      }
+
       // --- END --- HARD level moves
 
       // Check for SOLVED
