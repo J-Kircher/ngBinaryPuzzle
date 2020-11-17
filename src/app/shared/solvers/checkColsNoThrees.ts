@@ -30,7 +30,15 @@ export class CheckColsNoThrees {
 
       if (allButOneZero || allButOneOne) {
         // Can put one more zero/one in col
-        const ma: RegExpMatchArray = colString.match('0nn|n0n|nn0|1nn|n1n|nn1');
+        let ma = null;
+        const ma0: RegExpMatchArray = colString.match('0nn|n0n|nn0');
+        const ma1: RegExpMatchArray = colString.match('1nn|n1n|nn1');
+        if (allButOneZero && ma1 !== null) {
+            ma = ma1;
+        }
+        if (allButOneOne && ma0 !== null) {
+            ma = ma0;
+        }
         if (ma != null) {
           Logger.log(showLog(LogLevels.TRACE), '[CheckColsNoThrees] Match for possible three zeros/ones');
           const startPos = ma.index;
