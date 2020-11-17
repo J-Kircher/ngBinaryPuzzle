@@ -36,19 +36,19 @@ export class CheckRowsNoThrees {
 
       if (allButOneZero || allButOneOne) {
         // Can put one more zero/one in row
-        let ma = null;
-        const ma0: RegExpMatchArray = rowString.match('0nn|n0n|nn0');
-        const ma1: RegExpMatchArray = rowString.match('1nn|n1n|nn1');
-        if (allButOneZero && ma1 !== null) {
-            ma = ma1;
+        let no3 = null;
+        const no30: RegExpMatchArray = rowString.match('0nn|n0n|nn0');
+        const no31: RegExpMatchArray = rowString.match('1nn|n1n|nn1');
+        if (allButOneZero && no31 !== null) {
+            no3 = no31;
         }
-        if (allButOneOne && ma0 !== null) {
-            ma = ma0;
+        if (allButOneOne && no30 !== null) {
+            no3 = no30;
         }
-        if (ma != null) {
+        if (no3 != null) {
           Logger.log(showLog(LogLevels.TRACE), '[CheckRowsNoThrees] Match for possible three zeros/ones');
-          const startPos = ma.index;
-          const endPos = ma.index + ma[0].length - 1;
+          const startPos = no3.index;
+          const endPos = no3.index + no3[0].length - 1;
           for (let col = 0; col < gridSize; col++) {
             if (tableData[row][col].value === null && !(col >= startPos && col <= endPos)) {
               Logger.log(showLog(LogLevels.INFO),
