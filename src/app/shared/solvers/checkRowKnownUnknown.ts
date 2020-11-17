@@ -29,12 +29,18 @@ export class CheckRowKnownUnknown {
       const allButOneOne = (oneCount === (gridSize / 2) - 1);
       if (allButOneZero || allButOneOne) {
         // Can put one more zero/one in row
-        const foundPos = rowString.indexOf('1nn0') > -1 ? rowString.indexOf('1nn0') : rowString.indexOf('0nn1');
-        if (foundPos > -1) {
-          const foundCols = [ foundPos, foundPos + 1, foundPos + 2, foundPos + 3 ];
-          Logger.log(showLog(LogLevels.TRACE), '[CheckRowKnownUnknown] Cols: ' + foundCols);
+        const ma: RegExpMatchArray = rowString.match('1nn+0|0nn+1');
+        if (ma != null) {
+          // console.log('ma: ' + ma);
+          // console.table(ma);
+          const startPos = ma.index;
+          const endPos = ma.index + ma[0].length - 1;
           for (let col = 0; col < gridSize; col++) {
-            if (tableData[row][col].value === null && !(foundCols.indexOf(col) > -1)) {
+            // console.log('checking col ' + col);
+            // console.log('first exp part: ' + (tableData[row][col].value === null));
+            // console.log('second exp part: ' + !(col >= startPos && col <= endPos));
+            // console.log('full exp: ' + (tableData[row][col].value === null && !(col >= startPos && col <= endPos)));
+            if (tableData[row][col].value === null && !(col >= startPos && col <= endPos)) {
               Logger.log(showLog(LogLevels.INFO),
                 '[CheckRowKnownUnknown] Setting cell[' + row + '][' + col + '] to ' + (allButOneZero ? 1 : 0));
               tableData[row][col].value = allButOneZero ? 1 : 0;
