@@ -37,7 +37,7 @@ export class CheckColKnownUnknownNoThrees {
           const endPos = ma.index + ma[0].length - 1;
 
           // Temporarily fill in known/unknowns to search for No Threes
-          colString = colString.replace('1nn0', '1010').replace('0nn1', '0101');
+          colString = colString.replace('1nn0', '1xx0').replace('0nn1', '0xx1');
 
           let no3 = null;
           const no30: RegExpMatchArray = colString.match('0nn|n0n|nn0');
