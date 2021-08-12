@@ -40,22 +40,6 @@ export class PuzzleComponent implements OnInit {
   // Change bg color of recent click/focus
   // Add all the "solvers" into their own module (or class?)
   // Additional solvers:
-  //    Row compare (3 - Challenging)
-  //      If all but one in one row, and matches a row with all,
-  //        then the missing one is opposite
-  //        example: 8H 2018-11-17 (row 2)
-  //        0 1 1 0 0 1 1 0
-  //        0 _ 1 0 _ 1 _ 0
-  //        second blank must be a 1
-  //        also: 12VH 2019-10-09 (cols 1 and 4)
-  //        also: 10H Test 3
-  //      When 2 left, make them opposite
-  //        example:
-  //        0 1 1 0 1 0 1 0
-  //        0 1 1 0 1 _ _ 0
-  //        blanks should be 1 0
-  //        probably solved with above row compare
-  //
   //  Need to solve:
   //    10H 2018-11-10 example: (first row)
   //        _ 1 _ _ 0 _ _ 1 0 1

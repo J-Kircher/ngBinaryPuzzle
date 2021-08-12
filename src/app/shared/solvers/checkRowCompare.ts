@@ -44,12 +44,22 @@ export class CheckRowCompare {
         for (let compRowIdx = 0; compRowIdx < completeRows.length; compRowIdx++) {
           // console.log('  looking at: ' + completeRows[compRowIdx]);
           // console.log('  compare to: ' + rowString);
+          // Check to see if all non 'n's match
+          let rowMatch = true;
           for (let idx = 0; idx < rowString.length; idx++) {
-            if (rowString[idx] === 'n' && completeRows[compRowIdx][idx] === '0') {
-              Logger.log(showLog(LogLevels.INFO),
-                '[CheckRowCompare] Setting cell[' + row + '][' + idx + '] to ' + 1);
-              tableData[row][idx].value = 1;
-              moveMade = true;
+            if (rowString[idx] !== 'n' && rowString[idx] !== completeRows[compRowIdx][idx]) {
+              rowMatch = false;
+            }
+          }
+          if (rowMatch) {
+            // console.log('Rows match - good to compare');
+            for (let idx = 0; idx < rowString.length; idx++) {
+              if (rowString[idx] === 'n' && completeRows[compRowIdx][idx] === '0') {
+                Logger.log(showLog(LogLevels.INFO),
+                  '[CheckRowCompare] Setting cell[' + row + '][' + idx + '] to ' + 1);
+                tableData[row][idx].value = 1;
+                moveMade = true;
+              }
             }
           }
         }
@@ -59,12 +69,22 @@ export class CheckRowCompare {
         for (let compRowIdx = 0; compRowIdx < completeRows.length; compRowIdx++) {
           // console.log('  looking at: ' + completeRows[compRowIdx]);
           // console.log('  compare to: ' + rowString);
+          // Check to see if all non 'n's match
+          let rowMatch = true;
           for (let idx = 0; idx < rowString.length; idx++) {
-            if (rowString[idx] === 'n' && completeRows[compRowIdx][idx] === '1') {
-              Logger.log(showLog(LogLevels.INFO),
-                '[CheckRowCompare] Setting cell[' + row + '][' + idx + '] to ' + 0);
-              tableData[row][idx].value = 0;
-              moveMade = true;
+            if (rowString[idx] !== 'n' && rowString[idx] !== completeRows[compRowIdx][idx]) {
+              rowMatch = false;
+            }
+          }
+          if (rowMatch) {
+            // console.log('Rows match - good to compare');
+            for (let idx = 0; idx < rowString.length; idx++) {
+              if (rowString[idx] === 'n' && completeRows[compRowIdx][idx] === '1') {
+                Logger.log(showLog(LogLevels.INFO),
+                  '[CheckRowCompare] Setting cell[' + row + '][' + idx + '] to ' + 0);
+                tableData[row][idx].value = 0;
+                moveMade = true;
+              }
             }
           }
         }

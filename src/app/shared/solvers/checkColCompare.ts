@@ -44,12 +44,22 @@ export class CheckColCompare {
         for (let compColIdx = 0; compColIdx < completeCols.length; compColIdx++) {
           // console.log('  looking at: ' + completeCols[compColIdx]);
           // console.log('  compare to: ' + colString);
+          // Check to see if all non 'n's match
+          let colMatch = false;
           for (let idx = 0; idx < colString.length; idx++) {
-            if (colString[idx] === 'n' && completeCols[compColIdx][idx] === '0') {
-              Logger.log(showLog(LogLevels.INFO),
-                '[CheckColCompare] Setting cell[' + idx + '][' + col + '] to ' + 1);
-              tableData[idx][col].value = 1;
-              moveMade = true;
+            if (colString[idx] !== 'n' && colString[idx] !== completeCols[compColIdx][idx]) {
+              colMatch = false;
+            }
+          }
+          if (colMatch) {
+            // console.log('Cols match - good to compare');
+            for (let idx = 0; idx < colString.length; idx++) {
+              if (colString[idx] === 'n' && completeCols[compColIdx][idx] === '0') {
+                Logger.log(showLog(LogLevels.INFO),
+                  '[CheckColCompare] Setting cell[' + idx + '][' + col + '] to ' + 1);
+                tableData[idx][col].value = 1;
+                moveMade = true;
+              }
             }
           }
         }
@@ -59,12 +69,22 @@ export class CheckColCompare {
         for (let compColIdx = 0; compColIdx < completeCols.length; compColIdx++) {
           // console.log('  looking at: ' + completeCols[compColIdx]);
           // console.log('  compare to: ' + colString);
+          // Check to see if all non 'n's match
+          let colMatch = false;
           for (let idx = 0; idx < colString.length; idx++) {
-            if (colString[idx] === 'n' && completeCols[compColIdx][idx] === '1') {
-              Logger.log(showLog(LogLevels.INFO),
-                '[CheckColCompare] Setting cell[' + idx + '][' + col + '] to ' + 0);
-              tableData[idx][col].value = 0;
-              moveMade = true;
+            if (colString[idx] !== 'n' && colString[idx] !== completeCols[compColIdx][idx]) {
+              colMatch = false;
+            }
+          }
+          if (colMatch) {
+            // console.log('Cols match - good to compare');
+            for (let idx = 0; idx < colString.length; idx++) {
+              if (colString[idx] === 'n' && completeCols[compColIdx][idx] === '1') {
+                Logger.log(showLog(LogLevels.INFO),
+                  '[CheckColCompare] Setting cell[' + idx + '][' + col + '] to ' + 0);
+                tableData[idx][col].value = 0;
+                moveMade = true;
+              }
             }
           }
         }
