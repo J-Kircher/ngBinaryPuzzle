@@ -82,7 +82,7 @@ export const Samples: GridPuzzles[] = [
     [ null, null, null, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null ],
     [ null, null, null, null, null, null, null, null, null, null ],
-    [ null, null, null, null, null, null, null, null, null, null ]
+    [ null, 1, 1, null, 1, 1, null, null, null, 0 ]
   ] },
   { id: 9, value: 10, label: '10H 2018-11-10', grid: [
     [ null, 1, null, null, 0, null, null, null, null, null ],
