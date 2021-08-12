@@ -20,8 +20,8 @@ export class CheckRowCompare {
         completeRows.push(rowString);
       }
     }
-    console.log('Complete Rows built');
-    console.log('Complete Rows: ' + completeRows.length);
+    // console.log('Complete Rows built');
+    // console.log('Complete Rows: ' + completeRows.length);
 
     for (let row = 0; row < gridSize; row++) {
       let zeroCount = 0;

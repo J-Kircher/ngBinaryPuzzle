@@ -20,8 +20,8 @@ export class CheckColCompare {
         completeCols.push(colString);
       }
     }
-    console.log('Complete Cols built');
-    console.log('Complete Cols: ' + completeCols.length);
+    // console.log('Complete Cols built');
+    // console.log('Complete Cols: ' + completeCols.length);
 
     for (let col = 0; col < gridSize; col++) {
       let zeroCount = 0;
