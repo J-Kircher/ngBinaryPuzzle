@@ -24,6 +24,8 @@ import { CheckRowsNoThrees } from '../shared/solvers/checkRowsNoThrees';
 import { CheckColsNoThrees } from '../shared/solvers/checkColsNoThrees';
 import { CheckRowKnownUnknownNoThrees } from '../shared/solvers/checkRowKnownUnknownNoThrees';
 import { CheckColKnownUnknownNoThrees } from '../shared/solvers/checkColKnownUnknownNoThrees';
+import { CheckRowCompare } from '../shared/solvers/checkRowCompare';
+import { CheckColCompare } from '../shared/solvers/checkColCompare';
 
 @Component({
   selector: 'app-puzzle',
@@ -46,21 +48,32 @@ export class PuzzleComponent implements OnInit {
   //        0 _ 1 0 _ 1 _ 0
   //        second blank must be a 1
   //        also: 12VH 2019-10-09 (cols 1 and 4)
+  //        also: 10H Test 3
   //      When 2 left, make them opposite
   //        example:
   //        0 1 1 0 1 0 1 0
   //        0 1 1 0 1 _ _ 0
   //        blanks should be 1 0
   //        probably solved with above row compare
-  //    Need to solve 10H 2018-11-12
-  //    Need to solve 10VH 2019-08-26
-  //    Need to solve 12H 2019-10-08
-  //    Need to solve 12VH 2019-10-09
+  //
+  //  Need to solve:
+  //    10H 2018-11-10 example: (first row)
+  //        _ 1 _ _ 0 _ _ 1 0 1
+  //        first blank should be 0
+  //    10H 2018-11-12 example: (first row)
+  //        1 1 0 _ _ _ _ _ _ 1
+  //        third blank should be 0 (can't be one, would mean 6 1's)
+  //    10VH 2019-08-26
+  //    10VH 2020-11-17
+  //    12H 2019-10-08
+  //    12VH 2019-10-09
 
   tableData = [];
   gridSize = 8;
   puzzleLevel = PuzzleLevels.Easy;
   initLogLevel = LogLevels.OFF;
+  // initLogLevel = LogLevels.TRACE;
+  // initLogLevel = LogLevels.INFO;
 
   gridSizes: GridSizes[] = [
     { value: 6, label: '6 x 6' },
@@ -327,8 +340,35 @@ export class PuzzleComponent implements OnInit {
           }
         }
       }
-
       // --- END --- HARD level moves
+
+      // --- START --- CHALLENGING level moves
+      if (!moveMade) {
+        // Check for ROW-COMPARE
+        Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for row compare');
+        let rowCompare = true;
+        while (rowCompare) {
+          rowCompare = CheckRowCompare.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (rowCompare) {
+            Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Row Compare: MOVEMADE');
+            moveMade = true;
+            this.puzzleLevel = PuzzleLevels.Challenging;
+          }
+        }
+
+        // Check for COL-COMPARE
+        Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Check for col compare');
+        let colCompare = true;
+        while (colCompare) {
+          colCompare = CheckColCompare.check(this.gridSize, this.tableData, this.loggerService.getLogLevel());
+          if (colCompare) {
+            Logger.log(this.showLog(LogLevels.TRACE), '[puzzle] solve() Col Compare: MOVEMADE');
+            moveMade = true;
+            this.puzzleLevel = PuzzleLevels.Challenging;
+          }
+        }
+      }
+      // --- END --- CHALLENGING level moves
 
       // Check for SOLVED
       this.solved = this.isSolved();
